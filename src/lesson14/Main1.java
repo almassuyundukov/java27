@@ -21,7 +21,7 @@ public class Main1 {
 //        }
         System.out.println(telContacts.get("Василий"));
         System.out.println(telContacts.get("Василий"));
-
+        telContacts.remove("Василий");
         System.out.println(telContacts);
 
     }

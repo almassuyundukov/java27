@@ -63,6 +63,16 @@ public class MultiMapImpl<K, V> extends HashMap<K, V> implements MultiMap<K, V> 
     }
 
     @Override
+    public V remove(Object key) {
+        if(multiMap.containsKey(key)){
+            return (V) multiMap.remove(key);
+        } else{
+            return null;
+        }
+
+    }
+
+    @Override
     public String toString() {
         return multiMap.toString();
     }

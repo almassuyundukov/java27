@@ -24,13 +24,11 @@ public class Matrix implements IMatrix {
     @Override
     public double getValueAt(int rowIndex, int colIndex) throws IndexOutOfBoundsException {
         if (rowIndex < 0 || rowIndex >= getRows()) {
-            System.out.println("Неверный индекс строки!");
-            return -1;
+            throw new IndexOutOfBoundsException("rowIndex < 0 || rowIndex >= getRows()");
         }
 
         if (colIndex < 0 || colIndex >= getColumns()) {
-            System.out.println("Неверный индекс строки!");
-            return -1;
+            throw new IndexOutOfBoundsException("colIndex < 0 || colIndex >= getColumns()");
         }
 
         return numbers[rowIndex][colIndex];
@@ -39,13 +37,11 @@ public class Matrix implements IMatrix {
     @Override
     public void setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
         if (rowIndex < 0 || rowIndex >= getRows()) {
-            System.out.println("Неверный индекс строки!");
-            return;
+            throw new IndexOutOfBoundsException("Неверный индекс строки!");
         }
 
         if (colIndex < 0 || colIndex >= getColumns()) {
-            System.out.println("Неверный индекс строки!");
-            return;
+            throw new IndexOutOfBoundsException("Неверный индекс столбца!");
         }
 
         numbers[rowIndex][colIndex] = value;
@@ -57,13 +53,15 @@ public class Matrix implements IMatrix {
         // otherMatrix - вторая матрица
 
         if (this.getColumns() != otherMatrix.getColumns()) {
-            System.out.println("Не одинаковое количество колонок!");
-            return null;
+            throw new IllegalArgumentException("Не одинаковое количество колонок!");
         }
 
         if (this.getRows() != otherMatrix.getRows()) {
-            System.out.println("Не одинаковое количество строк!");
-            return null;
+            throw new IllegalArgumentException("Не одинаковое количество строк!");
+        }
+
+        if(otherMatrix == null){
+            throw new NullPointerException("otherMatrix == null");
         }
 
         Matrix matrix = new Matrix(this.getRows(), this.getColumns());
@@ -79,13 +77,15 @@ public class Matrix implements IMatrix {
     @Override
     public IMatrix sub(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
         if (this.getColumns() != otherMatrix.getColumns()) {
-            System.out.println("Не одинаковое количество колонок!");
-            return null;
+            throw new IllegalArgumentException("Не одинаковое количество колонок!");
         }
 
         if (this.getRows() != otherMatrix.getRows()) {
-            System.out.println("Не одинаковое количество строк!");
-            return null;
+            throw new IllegalArgumentException("Не одинаковое количество строк!");
+        }
+
+        if(otherMatrix == null){
+            throw new NullPointerException("otherMatrix == null");
         }
 
         Matrix matrix = new Matrix(this.getRows(), this.getColumns());
@@ -101,8 +101,11 @@ public class Matrix implements IMatrix {
     @Override
     public IMatrix mul(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
         if (this.getColumns() != otherMatrix.getRows()) {
-            System.out.println("Количество столбцов в первой матрице не совпадает с количеством строк во второй матрице");
-            return null;
+            throw new IllegalArgumentException("Количество столбцов в первой матрице не совпадает с количеством строк во второй матрице");
+        }
+
+        if(otherMatrix == null){
+            throw new NullPointerException("otherMatrix == null");
         }
 
         Matrix matrix = new Matrix(this.getRows(), otherMatrix.getColumns());
