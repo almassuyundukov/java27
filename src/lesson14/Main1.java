@@ -1,5 +1,7 @@
 package lesson14;
 
+import java.util.HashSet;
+
 public class Main1 {
     public static void main(String[] args) {
         MultiMapImpl<String, String> telContacts = new MultiMapImpl();
@@ -19,10 +21,23 @@ public class Main1 {
 //        for(String tel:telContacts.values()){
 //            System.out.println(tel);
 //        }
+        System.out.println(telContacts.get("Георгий"));
         System.out.println(telContacts.get("Василий"));
         System.out.println(telContacts.get("Василий"));
         telContacts.remove("Василий");
         System.out.println(telContacts);
+        System.out.println(telContacts.containsKey("Георгий"));
+        telContacts.remove("Георгий", "+7997068274");
+        System.out.println(telContacts);
+        System.out.println(telContacts.keySet());;
+        System.out.println(telContacts.isEmpty());
+        System.out.println(telContacts.clone());
+        System.out.println(telContacts.size());
+        System.out.println(telContacts.containsValue("+7935290382"));
+        System.out.println(telContacts.replace("Георгий", "+10935290383"));
+        System.out.println(telContacts);
+        System.out.println(telContacts.replace("Георгий", "+10935290383", "111"));
+
 
     }
 }
